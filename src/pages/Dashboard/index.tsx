@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { Container, Repositories, Avatar } from './styles';
+import { Container, User, Avatar, Login, UserInfo, Info } from './styles';
 
 import Navbar from '../../components/Navbar';
-import { Text, View } from 'react-native';
 
 const Dashboard: React.FC = () => {
   return (
@@ -11,18 +10,17 @@ const Dashboard: React.FC = () => {
       <Navbar />
 
       <Container>
-        <Repositories>
+        <User>
           <Avatar
             source={{
               uri: 'https://avatars.githubusercontent.com/u/38008649?v=4',
             }}
           />
-          <View>
-            <Text>Login</Text>
-            <Text>Quantidade de seguindores</Text>
-            <Text>Quantidade de Seguindo</Text>
-          </View>
-        </Repositories>
+          <UserInfo>
+            <Login>guilhermesandi</Login>
+            <Info>followers 7 | following 11</Info>
+          </UserInfo>
+        </User>
       </Container>
     </>
   );
