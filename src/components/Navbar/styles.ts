@@ -16,3 +16,8 @@ export const Page = styled.Text`
 
   font-size: 24px;
 `;
+
+export const TextInput = styled.TextInput`
+  background: #0001;
+  color: #fff;
+`;
