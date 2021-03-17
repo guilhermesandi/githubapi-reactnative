@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Entypo';
@@ -6,8 +6,19 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { Container, IconEvil, InputView, Page, TextInput } from './styles';
 
 const Navbar: React.FC = () => {
-  function searchLogin(login: string) {
-    console.log(login);
+  const [searchBarOpen, setSearchBarOpen] = useState(false);
+  const [searchLogin, setSearchLogin] = useState('');
+
+  // function searchLogin(login: string) {
+  //   console.log(login);
+  // }
+
+  function openSearchBar() {
+    setSearchBarOpen(true);
+  }
+
+  function closeSearchBar() {
+    setSearchBarOpen(false);
   }
 
   return (
@@ -19,17 +30,19 @@ const Navbar: React.FC = () => {
 
         <Page>My Apps</Page>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={openSearchBar}>
           <Icon name="magnifying-glass" size={32} color="#fff" />
         </TouchableOpacity>
       </Container>
 
-      <InputView>
-        <TextInput onChangeText={text => searchLogin(text)} />
-        <TouchableOpacity>
-          <IconEvil name="close" size={32} color="#000" />
-        </TouchableOpacity>
-      </InputView>
+      {searchBarOpen && (
+        <InputView>
+          <TextInput onChangeText={text => setSearchLogin(text)} />
+          <TouchableOpacity onPress={closeSearchBar}>
+            <IconEvil name="close" size={32} color="#000" />
+          </TouchableOpacity>
+        </InputView>
+      )}
     </>
   );
 };
