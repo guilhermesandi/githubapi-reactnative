@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Entypo';
 
-import { Container, Page, TextInput } from './styles';
+import { Container, IconEvil, InputView, Page, TextInput } from './styles';
 
 const Navbar: React.FC = () => {
   function searchLogin(login: string) {
@@ -11,18 +11,26 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <Container>
-      <TouchableOpacity>
-        <Icon name="dots-three-horizontal" size={32} color="#fff" />
-      </TouchableOpacity>
+    <>
+      <Container>
+        <TouchableOpacity>
+          <Icon name="dots-three-horizontal" size={32} color="#fff" />
+        </TouchableOpacity>
 
-      <Page>My Apps</Page>
+        <Page>My Apps</Page>
 
-      <TextInput onChangeText={text => searchLogin(text)} />
-      <TouchableOpacity>
-        <Icon name="magnifying-glass" size={32} color="#fff" />
-      </TouchableOpacity>
-    </Container>
+        <TouchableOpacity>
+          <Icon name="magnifying-glass" size={32} color="#fff" />
+        </TouchableOpacity>
+      </Container>
+
+      <InputView>
+        <TextInput onChangeText={text => searchLogin(text)} />
+        <TouchableOpacity>
+          <IconEvil name="close" size={32} color="#000" />
+        </TouchableOpacity>
+      </InputView>
+    </>
   );
 };
 
