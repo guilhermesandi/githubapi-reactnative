@@ -15,18 +15,6 @@ const Dashboard: React.FC = () => {
 
       <ScrollView>
         <Container>
-          <User>
-            <Avatar
-              source={{
-                uri: 'https://avatars.githubusercontent.com/u/38008649?v=4',
-              }}
-            />
-            <UserInfo>
-              <Login>guilhermesandi</Login>
-              <Info>followers 7 | following 11</Info>
-            </UserInfo>
-          </User>
-
           {users
             .filter(user => {
               if (searchLogin === '') {

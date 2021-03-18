@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
           <Icon name="dots-three-horizontal" size={32} color="#fff" />
         </TouchableOpacity>
 
-        <Page>My Apps</Page>
+        <Page>GitHub Users</Page>
 
         <TouchableOpacity onPress={openSearchBar}>
           <Icon name="magnifying-glass" size={32} color="#fff" />
