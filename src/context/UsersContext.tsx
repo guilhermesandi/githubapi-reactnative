@@ -39,7 +39,6 @@ export default function UsersProvider({ children }: UsersProviderProps) {
       users[index].followers = data.followers;
       users[index].following = data.following;
     });
-    console.log('a');
   };
 
   getFollow();
