@@ -3,11 +3,17 @@ import { View, StatusBar } from 'react-native';
 
 import Dashboard from './pages/Dashboard';
 
+import UsersProvider from './context/UsersContext';
+
 const App: React.FC = () => (
-  <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+  <>
     <StatusBar barStyle="light-content" backgroundColor="#7348a1" />
-    <Dashboard />
-  </View>
+    <UsersProvider>
+      <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+        <Dashboard />
+      </View>
+    </UsersProvider>
+  </>
 );
 
 export default App;

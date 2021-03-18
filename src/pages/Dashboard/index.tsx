@@ -1,37 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { ScrollView } from 'react-native';
-
-import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
 
 import { Container, User, Avatar, Login, UserInfo, Info } from './styles';
-
-interface User {
-  id: number;
-  avatar_url: string;
-  login: string;
-  followers: number;
-  following: number;
-}
+import { UsersContext } from '../../context/UsersContext';
 
 const Dashboard: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
-
-  // async function getFollowersUser(login: string): Promise<string> {
-  //   const response = await api.get(`/${login}`);
-
-  //   const followers = response.data.followers;
-  //   console.log(followers);
-
-  //   return followers;
-  // }
-
-  useEffect(() => {
-    api.get('').then(response => {
-      setUsers(response.data);
-    });
-  }, []);
+  const { users, searchLogin } = useContext(UsersContext);
 
   return (
     <>
@@ -51,21 +27,31 @@ const Dashboard: React.FC = () => {
             </UserInfo>
           </User>
 
-          {users.map(user => (
-            <User key={user.id}>
-              <Avatar
-                source={{
-                  uri: user.avatar_url,
-                }}
-              />
-              <UserInfo>
-                <Login>{user.login}</Login>
-                <Info>
-                  followers {user.followers} | following {user.following}
-                </Info>
-              </UserInfo>
-            </User>
-          ))}
+          {users
+            .filter(user => {
+              if (searchLogin === '') {
+                return user;
+              } else if (
+                user.login.toLowerCase().includes(searchLogin.toLowerCase())
+              ) {
+                return user;
+              }
+            })
+            .map(user => (
+              <User key={user.id}>
+                <Avatar
+                  source={{
+                    uri: user.avatar_url,
+                  }}
+                />
+                <UserInfo>
+                  <Login>{user.login}</Login>
+                  <Info>
+                    followers {user.followers} | following {user.following}
+                  </Info>
+                </UserInfo>
+              </User>
+            ))}
         </Container>
       </ScrollView>
     </>

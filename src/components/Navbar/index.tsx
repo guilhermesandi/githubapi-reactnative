@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Entypo';
+import { UsersContext } from '../../context/UsersContext';
 
 import { Container, IconEvil, InputView, Page, TextInput } from './styles';
 
 const Navbar: React.FC = () => {
   const [searchBarOpen, setSearchBarOpen] = useState(false);
-  const [searchLogin, setSearchLogin] = useState('');
-
-  // function searchLogin(login: string) {
-  //   console.log(login);
-  // }
+  const { setSearchLogin } = useContext(UsersContext);
 
   function openSearchBar() {
     setSearchBarOpen(true);
@@ -19,6 +16,7 @@ const Navbar: React.FC = () => {
 
   function closeSearchBar() {
     setSearchBarOpen(false);
+    setSearchLogin('');
   }
 
   return (
