@@ -31,6 +31,19 @@ export default function UsersProvider({ children }: UsersProviderProps) {
     });
   }, []);
 
+  const getFollow = () => {
+    users.map(async (user, index) => {
+      const response = await api.get(`/${user.login}`);
+      const data = await response.data;
+
+      users[index].followers = data.followers;
+      users[index].following = data.following;
+    });
+    console.log('a');
+  };
+
+  getFollow();
+
   return (
     <UsersContext.Provider
       value={{
